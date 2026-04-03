@@ -1,0 +1,22 @@
+Sistema de Cadastro de Veículos
+
+Conforme comentado em aula, informei que tentaria utilizar o banco de dados para aprimoramento do trabalho. 
+
+Pasta SRC
+IO. java - Atalho para a leitura e escrita no terminal, mentem um único Scanner compartilhado, para centralizar as opções de entrada e saída.
+Input.java - Leitura dos números, Usa um loop para que somente prossiga se o valor informado pelo usuario esteja no formato exigido. 
+Conexao.java - Arquivo que conecta o banco de dados com a estrutura do projeto, abrindo e fechando quando alguma informação é requerida. 
+CadVeiculos.java - Contém a logica principal, todo o menu juntamente com Bubble Sort.
+Banco.java - Executado uma unica vez, cria a tabela de veículos caso não exista. 
+
+Pasta lib 
+Contém a biblioteca que permite que o Java se conecte com o SQlite, consegui ela pelo GitHub.   
+
+Pasta bin
+Gerada automaticamente, por conta da JVM.
+
+Para rodar o projeto:
+Executar no terminal, o comando ".\rodar.bat", script para Windows que compila e executa o projeto diretamente pelo terminal sem precisar de uma IDE. Ele inclui a biblioteca SQLite no classpath, automaticamente, facilitando a execução do programa com um duplo clique ou pelo Prompt de Comando. 
+
+Trabalho feito pelo aluno Augusto W. Altmayer
+RA: 1138100

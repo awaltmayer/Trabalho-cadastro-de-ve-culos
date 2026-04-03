@@ -7,41 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CadVeiculos {
-
-    // =============================================
-    // Limpa o terminal usando sequência de escape ANSI
-    // =============================================
     static void limparTela() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    // =============================================
-    // Lê um número inteiro do usuário com tratamento
-    // de entrada inválida — nunca deixa o programa travar
-    // =============================================
     static int lerInteiro(String mensagem) {
-        while (true) {
-            try {
-                String entrada = IO.readln(mensagem);
-                if (entrada.trim().isEmpty()) {
-                    IO.println("Valor inválido! Digite um número.");
-                    continue;
-                }
-                return Integer.parseInt(entrada);
-            } catch (NumberFormatException e) {
-                IO.println("Valor inválido! Digite apenas números.");
-            }
-        }
+    return Input.scanInt(mensagem);
     }
 
-    // =============================================
-    // Exibe o menu principal e retorna a opção escolhida
-    // =============================================
     static int exibirMenu() {
         IO.println("\n========================================");
-        IO.println("         Sistema CadVeículos            ");
-        IO.println("========================================");
+        IO.println("         Sistema CadVeículos              ");
+        IO.println("==========================================");
         IO.println("1 - Cadastrar veículo");
         IO.println("2 - Listar veículos");
         IO.println("3 - Buscar veículo por nome");
@@ -53,9 +31,6 @@ public class CadVeiculos {
         return lerInteiro("Escolha uma opção: ");
     }
 
-    // =============================================
-    // Busca todos os veículos do banco e retorna como lista.
-    // =============================================
     static List<String> buscarTodos() {
         List<String> lista = new ArrayList<>();
         String sql = "SELECT nome FROM veiculos";
@@ -79,10 +54,6 @@ public class CadVeiculos {
         return lista;
     }
 
-    // =============================================
-    // Verifica se o nome já existe no banco,
-    // ignorando diferença entre maiúsculas e minúsculas.
-    // =============================================
     static boolean isDuplicado(String nome) {
         String sql = "SELECT COUNT(*) FROM veiculos WHERE LOWER(nome) = LOWER(?)";
 
@@ -105,26 +76,17 @@ public class CadVeiculos {
         }
     }
 
-    // =============================================
-    // Ordena a lista em ordem alfabética manualmente
-    // usando Bubble Sort com for e if, sem métodos prontos.
-    // =============================================
     static void ordenarLista(List<String> lista) {
         for (int i = 0; i < lista.size() - 1; i++) {
             for (int j = 0; j < lista.size() - 1 - i; j++) {
-                if (lista.get(j).compareToIgnoreCase(lista.get(j + 1)) > 0) {
+                    if (lista.get(j).toLowerCase().compareTo(lista.get(j + 1).toLowerCase()) > 0);
                     String aux = lista.get(j);
                     lista.set(j, lista.get(j + 1));
                     lista.set(j + 1, aux);
                 }
             }
         }
-    }
 
-    // =============================================
-    // Cadastra um novo veículo no banco.
-    // Valida se o nome está vazio e se já existe.
-    // =============================================
     static void cadastrarVeiculo() {
         String nome = IO.readln("Informe o nome do veículo: ");
 
@@ -155,10 +117,6 @@ public class CadVeiculos {
         }
     }
 
-    // =============================================
-    // Lista todos os veículos do banco em ordem alfabética.
-    // Exibe o total e mensagem caso a lista esteja vazia.
-    // =============================================
     static void listarVeiculos() {
         List<String> lista = buscarTodos();
 
@@ -178,10 +136,6 @@ public class CadVeiculos {
         IO.println("========================================");
     }
 
-    // =============================================
-    // Busca um veículo pelo nome no banco,
-    // ignorando maiúsculas/minúsculas.
-    // =============================================
     static void buscarVeiculo() {
         List<String> lista = buscarTodos();
 
@@ -210,10 +164,6 @@ public class CadVeiculos {
         IO.println("Total de veículos cadastrados: " + lista.size());
     }
 
-    // =============================================
-    // Edita o nome de um veículo existente pelo índice.
-    // O novo nome passa pelas mesmas validações do cadastro.
-    // =============================================
     static void editarVeiculo() {
         List<String> lista = buscarTodos();
 
@@ -270,9 +220,6 @@ public class CadVeiculos {
         }
     }
 
-    // =============================================
-    // Remove um veículo pelo índice da lista ordenada.
-    // =============================================
     static void removerPorIndice() {
         List<String> lista = buscarTodos();
 
@@ -316,9 +263,6 @@ public class CadVeiculos {
         }
     }
 
-    // =============================================
-    // Remove um veículo pelo nome, ignorando maiúsculas/minúsculas.
-    // =============================================
     static void removerPorNome() {
         List<String> lista = buscarTodos();
 
@@ -359,10 +303,6 @@ public class CadVeiculos {
         }
     }
 
-    // =============================================
-    // Método principal — controla o fluxo do programa
-    // com do-while e switch, conforme visto em aula.
-    // =============================================
     public static void main(String[] args) {
 
         Banco.criarTabela();
